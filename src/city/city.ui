@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect><x>0</x><y>0</y><width>1350</width><height>760</height></rect>
+  </property>
+  <property name="windowTitle">
+   <string>Умный перекрёсток — рабочее пространство для испытания ИИ</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="layoutMain">
+    <item>
+     <layout class="QHBoxLayout" name="layoutTop">
+      <item>
+       <widget class="QGroupBox" name="groupObjects">
+        <property name="title"><string>Палитра объектов</string></property>
+        <property name="maximumSize"><size><width>240</width><height>16777215</height></size></property>
+        <layout class="QVBoxLayout" name="layoutObjects">
+         <item>
+          <widget class="QListWidget" name="listObjects">
+           <property name="iconSize"><size><width>32</width><height>32</height></size></property>
+           <property name="styleSheet"><string>background: #d9ded9;</string></property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="btnSave">
+           <property name="text"><string>Сохранить сеть…</string></property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="btnLoad">
+           <property name="text"><string>Открыть сеть…</string></property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="btnClear">
+           <property name="text"><string>Очистить поле</string></property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item>
+       <widget class="QGroupBox" name="groupMap">
+        <property name="title"><string>Виртуальная сеть (карта)</string></property>
+        <layout class="QVBoxLayout" name="layoutMap">
+         <item>
+          <widget class="QGraphicsView" name="viewMap">
+           <property name="minimumSize"><size><width>706</width><height>426</height></size></property>
+           <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="labelHelp">
+           <property name="text"><string>Левая кнопка мыши — поставить объект (дорогу можно протягивать) · R — повернуть / переключить сигнал · Delete — удалить</string></property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item>
+       <layout class="QVBoxLayout" name="layoutRight">
+        <item>
+         <widget class="QGroupBox" name="groupProps">
+          <property name="title"><string>Характеристики объекта</string></property>
+          <layout class="QVBoxLayout" name="layoutProps">
+           <item>
+            <widget class="QLabel" name="labelSelected">
+             <property name="text"><string>Выберите объект на карте</string></property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QTableWidget" name="tableProps">
+             <attribute name="verticalHeaderVisible"><bool>false</bool></attribute>
+             <attribute name="horizontalHeaderStretchLastSection"><bool>true</bool></attribute>
+             <column><property name="text"><string>Свойство</string></property></column>
+             <column><property name="text"><string>Значение</string></property></column>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <widget class="QGroupBox" name="groupTrain">
+          <property name="title"><string>Обучение автомобиля (Q-learning)</string></property>
+          <layout class="QFormLayout" name="layoutTrain">
+           <item row="0" column="0">
+            <widget class="QLabel" name="labelEpisodes">
+             <property name="text"><string>Эпизодов</string></property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QSpinBox" name="spinEpisodes">
+             <property name="minimum"><number>10</number></property>
+             <property name="maximum"><number>5000</number></property>
+             <property name="singleStep"><number>50</number></property>
+             <property name="value"><number>300</number></property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="labelAlpha">
+             <property name="text"><string>Скорость обучения α</string></property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QDoubleSpinBox" name="spinAlpha">
+             <property name="minimum"><double>0.010000000000000</double></property>
+             <property name="maximum"><double>1.000000000000000</double></property>
+             <property name="singleStep"><double>0.100000000000000</double></property>
+             <property name="value"><double>0.500000000000000</double></property>
+            </widget>
+           </item>
+           <item row="2" column="0">
+            <widget class="QLabel" name="labelGamma">
+             <property name="text"><string>Дисконт γ</string></property>
+            </widget>
+           </item>
+           <item row="2" column="1">
+            <widget class="QDoubleSpinBox" name="spinGamma">
+             <property name="minimum"><double>0.100000000000000</double></property>
+             <property name="maximum"><double>0.990000000000000</double></property>
+             <property name="singleStep"><double>0.050000000000000</double></property>
+             <property name="value"><double>0.900000000000000</double></property>
+            </widget>
+           </item>
+           <item row="3" column="0" colspan="2">
+            <widget class="QPushButton" name="btnTrain">
+             <property name="text"><string>Начать обучение</string></property>
+            </widget>
+           </item>
+           <item row="4" column="0" colspan="2">
+            <widget class="QLabel" name="labelTrain">
+             <property name="text"><string>Обучение не запускалось</string></property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <widget class="QGroupBox" name="groupRuns">
+      <property name="title"><string>Результаты обучения (из базы данных)</string></property>
+      <layout class="QVBoxLayout" name="layoutRuns">
+       <item>
+        <widget class="QTableWidget" name="tableRuns">
+         <property name="maximumSize"><size><width>16777215</width><height>170</height></size></property>
+         <property name="editTriggers"><set>QAbstractItemView::NoEditTriggers</set></property>
+         <attribute name="verticalHeaderVisible"><bool>false</bool></attribute>
+         <attribute name="horizontalHeaderStretchLastSection"><bool>true</bool></attribute>
+         <column><property name="text"><string>№</string></property></column>
+         <column><property name="text"><string>Начало</string></property></column>
+         <column><property name="text"><string>Эпизодов</string></property></column>
+         <column><property name="text"><string>α</string></property></column>
+         <column><property name="text"><string>γ</string></property></column>
+         <column><property name="text"><string>Результат</string></property></column>
+         <column><property name="text"><string>Успешных эпизодов</string></property></column>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
